@@ -1,0 +1,31 @@
+<a (click)="onAdd()"> <i class="material-icons">add_circle</i></a>
+
+<div>
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let user"> <a [routerLink]="['people', user._id]">{{user.name}}</a> </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="address">
+      <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.address}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.phone}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="picture">
+      <mat-header-cell *matHeaderCellDef> Picture </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.picture}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="icons">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let user"> 
+        <a (click)="onDelete(user)"><i class="material-icons">delete</i></a>
+        <a (click)="onEdit(user)"><i class="material-icons">mode_edit</i></a>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
